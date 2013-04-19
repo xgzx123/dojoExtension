@@ -1,0 +1,46 @@
+{
+    "identifier": "id",
+	"label": "name",
+    "items": [
+        {
+            "id": "1",
+            "name": "HP OpenStack",
+            "image": "../resources/images/square.png",
+            "title": "HP OpenStack 1.0.0",
+            "desc": "HP OpenStack 1.0.0 Infrastructure",
+            "detail": "HP OpenStack 1.0.0 Infrastructure"
+        },
+        {
+            "id": "2",
+            "name": "Rackspace DFW",
+            "image": "../resources/images/square.png",
+            "title": "Rackspace DFW 1.0.0",
+            "desc": "Rackspace DFW 1.0.0 Infrastructure",
+            "detail": "Rackspace DFW 1.0.0 Infrastructure"
+        },
+        {
+			"id": "3",
+            "name": "AWS Asia",
+            "image": "../resources/images/square.png",
+            "title": "AWS Asia 1.0.0",
+            "desc": "AWS Asia 1.0.0 Infrastructure",
+            "detail": "AWS Asia 1.0.0 Infrastructure"
+        },
+        {
+            "id": "4",
+            "name": "AWS Europe",
+            "image": "../resources/images/square.png",
+            "title": "AWS Europe 1.0.0",
+            "desc": "AWS Europe 1.0.0 Infrastructure",
+            "detail": "AWS Europe 1.0.0 Infrastructure"
+        },
+        {
+			"id": "5",
+            "name": "Node",
+            "image": "../resources/images/square.png",
+            "title": "Node Chat 1.0.0",
+            "desc": "Node Chat 1.0.0 Infrastructure",
+            "detail": "Node Chat 1.0.0 Infrastructure"
+        }
+    ]
+}

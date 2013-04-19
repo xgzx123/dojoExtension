@@ -1,0 +1,102 @@
+<html>
+<head>
+	<title>Data View</title>
+	
+	<link rel='stylesheet' href="../resources/stubBase.css" />
+
+	<script type="text/javascript" src="../../dojo/dojo.js" 
+			data-dojo-config="async: true, isDebug: true, parseOnLoad: true,  packages:[{name: 'dataview', location:'../dataview'}]"></script>
+	
+	<script type="text/javascript" id="postDojo">
+		require([
+			"dojo/parser",
+			"dojo/_base/connect",
+			"dojo/dom",
+			"dojo/store/DataStore",
+			"dijit/_base/manager", 
+			"dijit/form/TextBox",
+			"dijit/form/Button",
+			"dijit/form/ComboBox",
+			"dijit/form/NumberSpinner",
+			"dijit/Dialog",
+			"dataview/DataViewList"
+		], function(
+			parser, connect, dom, DataStore, manager,
+			TextBox, Button, ComboBox, NumberSpinner, Dialog,
+			DataViewList
+		){
+			var dataViewWidget = new DataViewList({
+				url: "_data/dataview.json",
+				style: "width:850px",
+				title: "Choose an application platform",
+				animation: true,
+				itemAnimation: "flip",
+				filterProps: ["name", "title"],
+				sortProps: ["name", "title"],
+				switchModeBatch: true
+			}, "dataView");
+			dataViewWidget.fetch({ count: 20 });
+			
+			var dataViewInfrasWidget = new DataViewList({
+				url: "_data/dataviewInfras.json",
+				style: "width:600px",
+				title: "Choose an infrastructure",
+				contentHeight: 450,
+				showDetails: true,
+				filterProps: null,
+				sortProps: null
+			}, "dataViewInfras");
+			dataViewInfrasWidget.fetch();
+			
+			var dataViewDialogWidget = new DataViewList({
+				url: "_data/dataviewDialog.json",
+				style: "width:750px",
+				title: "Choose an item",
+				contentHeight: 280,
+				itemAnimation: "flip",
+				filterProps: null,
+				sortProps: null
+			}, "dataViewDialogWidget");
+			dataViewDialogWidget.fetch();
+			var detailDlg = new Dialog({
+				title: "Detail Data View"
+			}, "detailDialog");
+			detailDlg.startup();
+        });
+	</script>
+</head>
+
+<body class="claro">
+	<div style="padding:20px">	
+		<h1> Set up your Cloud Application </h1>
+		
+		<h5> Step 1: </h5>
+		<hr>
+		<div id="dataView"></div>
+		
+		<h5> Step 2: </h5>
+		<hr>
+		<div id="dataViewInfras"></div>
+		
+		<h5> Detail Config </h5>
+		<hr>
+		<div data-dojo-type="dijit/form/Button" 
+			data-dojo-props='onClick:function(){ dijit.byId("detailDialog").show() }'>Show Detail Data View</div>
+		
+		<div id="detailDialog" style="display:none">
+			<div class="dijitDialogPaneContentArea">
+				<div id="dataViewDialogWidget"></div>
+			</div>
+			<div class="dijitDialogPaneActionBar">
+				<div data-dojo-type="dijit/form/Button" data-dojo-props='type:"submit" '>OK</div>
+				<div data-dojo-type="dijit/form/Button" data-dojo-props='onClick:function(){ dijit.byId("detailDialog").onCancel(); }'>Cancel</div>
+			</div>
+		</div>
+		
+		<hr>
+		<p></p>
+		<p></p>
+		<p></p>
+	</div>
+</body>
+</html>

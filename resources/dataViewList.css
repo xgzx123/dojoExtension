@@ -1,0 +1,311 @@
+.claro .dataViewList {
+	content: "";
+	clear: both;
+	display: table;
+	background: none repeat scroll 0 0 #E4E7EC;
+    border: 1px solid #C9CCD0;
+    border-radius: 7px 7px 7px 7px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.14);
+    margin-bottom: 50px;
+    position: relative;
+    z-index: 10;
+	/*margin-left: auto;*/
+    margin-right: auto;
+}
+
+.claro .dataViewList .dijitTitlePaneTitle{
+	background-color: #EFF0F3;
+    background-image: -moz-linear-gradient(center top , #F9F9FA, #E0E2E8);
+    background-repeat: repeat-x;
+    border-bottom: 1px solid #C9CCD0;
+    border-radius: 6px 6px 0 0;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset, 0 0 3px rgba(0, 0, 0, 0.25);
+    height: 30px;
+    padding-left: 20px;
+    position: relative;
+    z-index: 20;
+}
+
+.claro .dataViewList .dijitTitlePaneTitle .dijitTitlePaneDescNode{
+	margin-left: 10px;
+}
+
+.claro .dataViewList .dijitTitlePaneContentOuter {
+}
+
+.claro .dataViewList .dataViewToolbar{
+	background: none repeat scroll 0 0 #E4E7EC;
+	padding: 5px;
+}
+
+.claro .dataViewList .dataViewToolbar .dataViewListFilter{
+	padding: 5px 10px;
+	font-weight: bold;
+	display: inline;
+}
+.claro .dataViewList .dataViewToolbar .dataViewListFilter .filterContainer{
+	margin-left: 10px;
+}
+
+.claro .dataViewList .dataViewToolbar .dataViewListSort{
+	text-align: right;
+	padding: 0px 10px;
+	font-weight: bold;
+	display: inline;
+}
+.claro .dataViewList .dataViewToolbar .dataViewListSort .sortContainer{
+}
+
+.claro .dataViewList .dataViewToolbar .dataViewListSwitchMode{
+	text-align: right;
+	padding: 0px 10px;
+	font-weight: bold;
+	display: inline;
+}
+
+
+.claro .dataViewList .dijitTitlePaneContentInner{
+	padding: 10px;
+	border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+	background: none repeat scroll 0 0 #E4E7EC;
+	overflow: auto;
+	/*display: table;*/
+}
+.claro .dataViewList .dijitTitlePaneContentInner.emptyContent{
+	text-align: center;
+	font-size: 18px;
+	font-weight: bold;	
+}
+
+.claro .dataViewList .dataViewListItem {
+	float: left;
+    background-color: #F1F1F1;
+    background-image: -moz-linear-gradient(center top , #F8F8F8, #E7E7E7);
+    background-repeat: repeat-x;
+    border: 1px solid #C9CCD0;
+    border-radius: 8px 8px 8px 8px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset, 0 1px 3px rgba(0, 0, 0, 0.2);
+    color: #585858;
+    margin: 10px;
+    padding: 10px;
+    overflow: hidden;
+    position: relative;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+	/*
+    height: 100px;
+	width: 200px;
+	*/
+}
+
+.claro .dataViewList .dataViewListItem .dataViewMain{
+	width: 100%;
+	height: 100%;
+}
+
+.claro .dataViewList .dataViewListItem .dataViewMain .itemImageContainer{
+	float: left;
+    margin-right: 8px;
+	height: 90%;
+    width: 30%;
+}
+.claro .dataViewList .dataViewListItem .dataViewMain .itemImageContainer .itemImage{
+    height: 90%;
+    width: 90%;
+}
+
+.claro .dataViewList .dataViewListItem .dataViewMain .itemInfoContainer{
+	float: left;
+    margin-left: 5px;
+    height: 90%;
+    width: 60%;
+	overflow: hidden;
+}
+.claro .dataViewList .dataViewListItem .dataViewMain .itemInfoContainer .itemTitle{
+	text-overflow: ellipsis;
+    white-space: nowrap;
+	word-break: break-all;
+	overflow: hidden;
+    line-height: 28px;
+	font-size: 15px;
+	font-weight: bold;
+	width: 90%;
+}
+.claro .dataViewList .dataViewListItem .dataViewMain .itemInfoContainer .itemDetails{
+    list-style: none outside none;
+    margin-left: 0;
+	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+	width: 90%;
+	overflow: hidden;
+}
+
+.claro .dataViewList .dataViewListItem .dataViewMain .itemInfoContainer .itemDetailsMain{
+    list-style: none outside none;
+	text-shadow: none;
+	line-height: 20px;
+	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+	text-overflow: ellipsis;
+    white-space: nowrap;
+	word-break: break-all;
+}
+.claro .dataViewList .dataViewListItem .dataViewMain .itemInfoContainer .itemDetailsContent{
+	list-style: none outside none;
+	line-height: 20px;
+	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+	text-overflow: ellipsis;
+    white-space: nowrap;
+	word-break: break-all;
+}
+
+.claro .dataViewList .dataViewListItem .dataViewMain .gotoItemInfoDetail{
+	position: absolute;
+	right:6px;
+	bottom:6px;
+	cursor: pointer;
+}
+.claro .dataViewList .dataViewListItemHover .dataViewMain .gotoItemInfoDetail{
+	font-weight: bold;
+}
+
+.claro .dataViewList .dataViewListItem .dataViewDetailDesc{
+	width: 100%;
+	height: 100%;
+}
+
+.claro .dataViewList .dataViewListItem .dataViewDetailDesc .itemDetailDescHeader{
+	font-weight: bold;
+	margin-top: 3px;
+}
+
+.claro .dataViewList .dataViewListItem .dataViewDetailDesc .gotoItemInfoMain{
+	position: absolute;
+	right:6px;
+	bottom:6px;
+	cursor: pointer;
+}
+.claro .dataViewList .dataViewListItemHover .dataViewDetailDesc .gotoItemInfoMain{
+	font-weight: bold;
+}
+
+
+.claro .dataViewList .dataViewListDetailPopup .popupInfoHeaderDiv{
+	font-weight: bold;
+}
+
+
+.claro .dataViewList .dataViewListDetailPopup{
+    position: absolute;
+	left: 100%;
+    top: 20px;
+	width: 150px;
+	padding: 20px;
+}
+.claro .dataViewList .dataViewListDetailPopup .popupImageDiv{
+}
+.claro .dataViewList .dataViewListDetailPopup .popupImage{
+    height: 90px;
+	width: 120px
+}
+.claro .dataViewList .dataViewListDetailPopup .popupInfoHeaderDiv{
+	font-size: 15px;
+	text-align: left;
+	font-weight: bold;
+	line-height: 20px;
+}
+.claro .dataViewList .dataViewListDetailPopup .popupInfoDiv{
+	text-align: left;
+	line-height: 20px;
+}
+
+
+.claro .dijitDialog .dijitDialogPaneContent{
+	height: auto !important;
+	width: auto !important;
+	overflow: hidden !important;
+}
+.claro .dijitDialog .dijitDialogPaneActionBar .dijitButton{
+}
+.claro .dijitDialog .dijitDialogPaneContent .dataViewList{
+}
+
+
+.claro .dataViewList .dataViewListItemHover{
+	box-shadow: 0 0 0 3px lightblue inset, 0 0 12px 2px rgba(0, 0, 0, 0.6) inset, 0 1px 0 rgba(255, 255, 255, 0.6);
+    outline: 0 none;
+}
+.claro .dataViewList .dataViewListItemFocused{
+	box-shadow: 0 0 0 3px #3C7DB2 inset, 0 0 12px 2px rgba(0, 0, 0, 0.6) inset, 0 1px 0 rgba(255, 255, 255, 0.6);
+    outline: 0 none;
+}
+
+.claro .dataViewList .dijitSelect .dijitArrowButton .dijitArrowButtonInner {
+    width: 20px;
+}
+
+.claro .dijitButton .dijitButtonNode,
+.claro .dijitDropDownButton .dijitButtonNode,
+.claro .dijitComboButton .dijitButtonNode,
+.claro .dijitToggleButton .dijitButtonNode {
+	padding: 4px 10px 4px;
+	background-color: #f4f4f4;
+	background-image: -moz-linear-gradient(top, #f4f4f4, #dbdbdb);
+	background-image: -webkit-gradient(linear,0% 0%,0% 100%,from(#f4f4f4),to(#dbdbdb));
+	background-image: -webkit-linear-gradient(top,  #f4f4f4 0%,#dbdbdb 100%); /* Chrome10+,Safari5.1+ */
+	background-image: -o-linear-gradient(top,  #f4f4f4 0%,#dbdbdb 100%); /* Opera 11.10+ */
+	background-image: -ms-linear-gradient(top,  #f4f4f4 0%,#dbdbdb 100%); /* IE10+ */
+	background-image: linear-gradient(top,  #f4f4f4 0%,#dbdbdb 100%); /* W3C */
+	border: 1px solid #c3c3c3;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
+	box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
+	color: #000000;
+	text-shadow:0px 1px 0px #ffffff;
+	font-weight: bold;
+}
+
+.claro .dijitButtonHover .dijitButtonNode,
+.claro .dijitDropDownButtonHover .dijitButtonNode,
+.claro .dijitComboButtonHover .dijitButtonNodeHover,
+.claro .dijitComboButtonHover .dijitDownArrowButtonHover,
+.claro .dijitToggleButtonHover .dijitButtonNode {
+	background-color: #e5e5e5;
+	background-image: -moz-linear-gradient(top, #fefefe, #cccccc);
+	background-image: -webkit-gradient(linear,0% 0%,0% 100%,from(#fefefe),to(#cccccc));
+	background-image: -webkit-linear-gradient(top, #fefefe 0%, #cccccc 100%); /* Chrome10+,Safari5.1+ */
+	background-image: -o-linear-gradient(top, #fefefe 0%, #cccccc 100%); /* Opera 11.10+ */
+	background-image: -ms-linear-gradient(top, #fefefe 0%, #cccccc 100%); /* IE10+ */
+	background-image: linear-gradient(top,  #fefefe 0%, #cccccc 100%); /* W3C */
+	border: 1px solid -moz-linear-gradient(top, #fdfdfd, #e4e4e4);
+	border: 1px solid -webkit-gradient(linear,0% 0%,100% 100%,from(#fdfdfd),to(#e4e4e4));
+}
+.claro .dijitButtonActive .dijitButtonNode,
+.claro .dijitDropDownButtonActive .dijitButtonNode,
+.claro .dijitComboButtonActive .dijitButtonNodeActive,
+.claro .dijitComboButtonActive .dijitDownArrowButtonActive,
+.claro .dijitToggleButtonActive .dijitButtonNode {
+	background-color: #cccccc;
+	background-image: -moz-linear-gradient(top, #dbdbdb, #f4f4f4);
+	background-image: -webkit-gradient(linear,0% 0%,0% 100%,from(#dbdbdb),to(#f4f4f4));
+	background-image: -webkit-linear-gradient(top, #dbdbdb 0%, #f4f4f4 100%); /* Chrome10+,Safari5.1+ */
+	background-image: -o-linear-gradient(top, #dbdbdb 0%, #f4f4f4 100%); /* Opera 11.10+ */
+	background-image: -ms-linear-gradient(top, #dbdbdb 0%, #f4f4f4 100%); /* IE10+ */
+	background-image: linear-gradient(top,  #dbdbdb 0%, #f4f4f4 100%); /* W3C */
+	-webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1) inset;
+	-moz-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1) inset;
+	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1) inset;
+	color: #515151;
+	outline: none;
+}
+
+.dj_opera .claro .dijitButtonActive .dijitButtonNode,
+.dj_opera .claro .dijitDropDownButtonActive .dijitButtonNode,
+.dj_opera .claro .dijitComboButtonActive .dijitButtonNodeActive,
+.dj_opera .claro .dijitComboButtonActive .dijitDownArrowButtonActive,
+.dj_opera .claro .dijitToggleButtonActive .dijitButtonNode {
+	-webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+}
