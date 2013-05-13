@@ -15,6 +15,7 @@ DataView is available under [Dojo Toolkit](http://dojotoolkit.org/) [CLA](http:/
 
 
 
-Please try the "/dataview/tests/test_DataView.html" to play this widget:
+Please try the "/dataview/tests/test_DataView.html" to play this widget.
+For more information, please see: https://github.com/xgzx123/dojoExtension/wiki/tutorial
 
 <img src="dataview.png"/>
