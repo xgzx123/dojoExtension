@@ -6,8 +6,7 @@
 		<div class="itemInfoContainer" data-dojo-attach-point="itemInfoContainerNode">
 			<div class="itemTitle">${title}</div>
 			<div class="itemDetails">
-				<div class="itemDetailsMain">${desc}</div>
-				<div class="itemDetailsContent">${detail}</div>
+				<div class="itemDetailsMain">${content}</div>
 			</div>
 		</div>
 		<div class="gotoItemInfoDetail" data-dojo-attach-event="ondijitclick:_onGotoDetailClick">
@@ -17,10 +16,8 @@
 	<div class="dataViewDetailDesc" data-dojo-attach-point="dataViewDetailDescNode" style="display:none">
 		<div class="itemDetailDescHeader">Title:</div>
 		<div class="itemDetailDescTitle">${title}</div>
-		<div class="itemDetailDescHeader">Description:</div>
-		<div class="itemDetailDescMain">${desc}</div>
-		<div class="itemDetailDescHeader">Detail Information:</div>
-		<div class="itemDetailDescContent">${detail}</div>
+		<div class="itemDetailDescHeader">Content:</div>
+		<div class="itemDetailDescMain">${content}</div>
 		<div class="gotoItemInfoMain" data-dojo-attach-event="ondijitclick:_onGotoMainClick">
 			Main
 		</div>

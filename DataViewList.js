@@ -19,6 +19,8 @@ define([
 	"dojo/keys",
 	"dojo/on",
 	"dojo/ready",
+	"dojo/cache",
+	"dojo/text",
 	"dojo/data/util/filter", 
 	"dojo/date/locale",
 	"dojo/data/ItemFileWriteStore",
@@ -46,11 +48,11 @@ define([
 	"dojo/text!./templates/DataViewListItem.html"
 ], function(kernel, array, declare, htmlUtil, connectUtil, event, lang, winUtil, json,
 		query, dom, domAttr, domClass, domStyle, domConstruct, domGeom, 
-		i18n, keys, on, ready, filterUtil, locale, ItemFileWriteStore, DataStore,
+		i18n, keys, on, ready, cache, text, filterUtil, locale, ItemFileWriteStore, DataStore,
 		baseFx, coreFx, easingUtil, dojoxFx, flip, wai, manager, a11y, focus, 
 		_Widget, _TemplatedMixin, _WidgetsInTemplateMixin, _CssStateMixin, _Container, ContentPane, TitlePane, 
 		Button, TextBox, Select,
-		template, templateItem){
+		template, itemTemplate){
 	
 	var _Animation = {};
 	lang.mixin(_Animation, {
@@ -398,7 +400,7 @@ define([
 	
 	var _DataViewListItem = declare("dataview/_DataViewListItem", [_Widget, _TemplatedMixin, _CssStateMixin], {
 		
-		templateString: templateItem,
+		templateString: null,
 		selected: false,
 		baseClass: "dataViewListItem",
 		
@@ -413,17 +415,47 @@ define([
 			domStyle.set(this.domNode, "zIndex", 1000);
 		},
 		
+		getSelected: function(){
+			return this.selected;
+		},
+		
 		_onFocus: function(){
-			this.selected = !this.selected;
-			this.updateParent(true);
+			//TODO
 		},
 		
 		_onBlur: function(){
-			this.selected = false;
-			this.updateParent(false);
+			// this.selected = false;
+			// this.updateParent(false);
 		},
 		
-		_onGotoDetailClick: function(){
+		_onClick: function(e){
+			this.selected = !this.selected;
+			
+			var dataViewList = this.getParent();
+			if(dataViewList.singleSelection){
+				var cItems = dataViewList.getChildren();
+				array.forEach(cItems, lang.hitch(this, function(cItem){
+					(cItem != this) && cItem.set("selected", false);
+				}));
+				if(this.selected){
+					dataViewList.selectedItems = [this];
+				}else{
+					dataViewList.selectedItems = [];
+				}
+			}else{
+				if(this.selected){
+					dataViewList.selectedItems.push(this);
+				}else{
+					dataViewList.selectedItems = array.filter(dataViewList.selectedItems, lang.hitch(this, function(item){
+				      return item != this;
+				    }));
+				}
+			}
+			
+			this.updateParent(this.selected);
+		},
+		
+		_onGotoDetailClick: function(e){
 			var parentWidget = this.getParent();
 			if(this.animating || !parentWidget.itemAnimation){return;}
 			this.animating = true;
@@ -442,9 +474,10 @@ define([
 				this.animating = false;
 			});
 			anim.play();
+			event.stop(e);
 		},
 		
-		_onGotoMainClick: function(){
+		_onGotoMainClick: function(e){
 			var parentWidget = this.getParent();
 			if(this.animating || !parentWidget.itemAnimation){return;}
 			this.animating = true;
@@ -463,11 +496,12 @@ define([
 				this.animating = false;
 			});
 			anim.play();
+			event.stop(e);
 		},
 		
-		updateParent: function(showPopup){
+		updateParent: function(showDetailPopup){
 			var dataViewList = this.getParent();
-			dataViewList.updateWidget(this, showPopup);
+			dataViewList.updateWidget(this, showDetailPopup);
 		}
 	});
 
@@ -487,16 +521,18 @@ define([
 		sortProps: ["name"],
 		customSortNode: "",
 		
-		selectItem: null,
+		selectedItems: [],
+		singleSelection: false,
 		
 		contentHeight: 500,
-		showDetails: false,
+		showPopupDetails: false,
 		
+		itemTemplate: itemTemplate,
 		itemWidth: 150,
 		itemHeight: 100,
 		itemGap: 20,
 		itemPositions: {},
-		itemAnimation: "none", //flip, flipCube
+		itemAnimation: "", //"", "flip", "flipCube"
 		
 		switchModeBatch: false,
 
@@ -683,11 +719,13 @@ define([
 				array.forEach(this.items, function(item, index){
 					var attrs = this.store.getAttributes(item);
 					var initItem = {};
+					initItem["templateString"] = this.itemTemplate;
 					array.forEach(attrs, function(attr){
 						if(attr == "id"){return;}
 						initItem[attr] = this.store.getValue(item, attr);
 					}, this);
 					var fvListItem = null;
+						
 					try{
 						fvListItem = new _DataViewListItem(initItem);
 					}catch(e){
@@ -726,18 +764,28 @@ define([
 			return position;
 		},
 		
-		getSelectItem: function(){
-			return this.selectedItem;
+		getSelectedItems: function(){
+			return this.selectedItems;
 		},
 		
-		updateWidget: function(dvListItem, showPopup){
+		updateWidget: function(dvListItem, showDetailPopup){
 			this.selectItem = dvListItem.selected ? dvListItem : null;
-			domAttr.set(this.titleDescNode, "innerHTML", dvListItem.selected ? ("(" + dvListItem.title + " selected)") : "(No item selected)");
+			var titleDesc = "";
+			if(this.selectedItems.length){
+				titleDesc += "Selected Items: ";
+				array.forEach(this.selectedItems, lang.hitch(this, function(item){
+					titleDesc += item["name"] + " . ";
+				}));
+				
+			}else{
+				titleDesc = "(No item selected)";
+			}
+			domAttr.set(this.titleDescNode, "innerHTML", titleDesc);
 			
-			this.showDetails && this.updateDetailPopup(dvListItem, showPopup);
+			this.showPopupDetails && this.updateDetailPopup(dvListItem, showDetailPopup);
 		},
 		
-		updateDetailPopup: function(dvListItem, showPopup){
+		updateDetailPopup: function(dvListItem, showDetailPopup){
 			if(this.popupAnimating){
 				return false;
 			}
@@ -748,7 +796,7 @@ define([
 				filter: "alpha(opacity=0)"
 			});
 			
-			if(showPopup){
+			if(showDetailPopup){
 				this.popupAnimating = true;
 				for(var prop in dvListItem.params){
 					if(prop == "image"){
@@ -760,6 +808,8 @@ define([
 							className: "popupImage"
 						}, imgDiv);
 						domConstruct.create("hr", {}, imgDiv, "after");
+					}else if(prop == "templateString"){
+						//TODO
 					}else{
 						domConstruct.create("div", {
 							className: "popupInfoHeaderDiv",
