@@ -405,6 +405,7 @@ define([
 		baseClass: "dataViewListItem",
 		
 		animating: false,
+		itemMode: "main", //"main", "detail"
 		
 		postMixInProperties: function(){
 			this.inherited(arguments);
@@ -447,7 +448,7 @@ define([
 					dataViewList.selectedItems.push(this);
 				}else{
 					dataViewList.selectedItems = array.filter(dataViewList.selectedItems, lang.hitch(this, function(item){
-				      return item != this;
+						return item != this;
 				    }));
 				}
 			}
@@ -471,10 +472,11 @@ define([
 				domStyle.set(this.dataViewMainNode, "display", "none");
 				domStyle.set(this.dataViewDetailDescNode, "display", "");
 				
+				this.itemMode = "detail";
 				this.animating = false;
 			});
 			anim.play();
-			event.stop(e);
+			e && event.stop(e);
 		},
 		
 		_onGotoMainClick: function(e){
@@ -493,10 +495,11 @@ define([
 				domStyle.set(this.dataViewMainNode, "display", "");
 				domStyle.set(this.dataViewDetailDescNode, "display", "none");
 				
+				this.itemMode = "main";
 				this.animating = false;
 			});
 			anim.play();
-			event.stop(e);
+			e && event.stop(e);
 		},
 		
 		updateParent: function(showDetailPopup){
@@ -560,9 +563,6 @@ define([
 
 		postCreate: function(){
 			this.inherited(arguments);
-			
-			//title
-			domAttr.set(this.titleDescNode, "innerHTML", "(No item selected)");
 			
 			//filter
 			if(lang.isArray(this.filterProps)){
@@ -630,9 +630,9 @@ define([
 					label: "Switch",
 					onClick: lang.hitch(this, function(){
 						var method = this.detailMode ? "_onGotoMainClick" : "_onGotoDetailClick";
-						array.forEach(this.getChildren(), function(item){
+						array.forEach(this.getChildren(), lang.hitch(this, function(item){
 							item[method]();
-						})
+						}));
 						this.detailMode = !this.detailMode;
 					})
 				});
@@ -702,6 +702,11 @@ define([
 		
 		render: function(){
 			this.destroyDescendants();
+			
+			//clear properties
+			this.selectedItems = [];
+			domAttr.set(this.titleDescNode, "innerHTML", "(No item selected)");
+			
 			if(this.items.length <= 0){
 				domClass.add(this.containerNode, "emptyContent");
 				this.containerNode.innerHTML = "Sorry, No item matched"
@@ -754,6 +759,7 @@ define([
 						this.itemPositions[identity] = position;
 					}
 				}, this);
+				
 			}
 		},
 		
@@ -770,17 +776,17 @@ define([
 		
 		updateWidget: function(dvListItem, showDetailPopup){
 			this.selectItem = dvListItem.selected ? dvListItem : null;
-			var titleDesc = "";
+			this.titleDesc = "";
 			if(this.selectedItems.length){
-				titleDesc += "Selected Items: ";
+				this.titleDesc += "Selected Items: ";
 				array.forEach(this.selectedItems, lang.hitch(this, function(item){
-					titleDesc += item["name"] + " . ";
+					this.titleDesc += item["name"] + " . ";
 				}));
 				
 			}else{
-				titleDesc = "(No item selected)";
+				this.titleDesc = "(No item selected)";
 			}
-			domAttr.set(this.titleDescNode, "innerHTML", titleDesc);
+			domAttr.set(this.titleDescNode, "innerHTML", this.titleDesc);
 			
 			this.showPopupDetails && this.updateDetailPopup(dvListItem, showDetailPopup);
 		},

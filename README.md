@@ -14,4 +14,7 @@ DataView is consisted of:
 DataView is available under [Dojo Toolkit](http://dojotoolkit.org/) [CLA](http://dojofoundation.org/about/cla) with the same [BSD/AFLv2 license] (http://dojotoolkit.org/license)
 
 
+
+Please try the "/dataview/tests/test_DataView.html" to play this widget:
+
 <img src="dataview.png"/>
