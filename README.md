@@ -12,3 +12,6 @@ DataView is consisted of:
 * Animation can be turn on/off at your preference.
 
 DataView is available under [Dojo Toolkit](http://dojotoolkit.org/) [CLA](http://dojofoundation.org/about/cla) with the same [BSD/AFLv2 license] (http://dojotoolkit.org/license)
+
+
+<img src="dataview.png"/>
