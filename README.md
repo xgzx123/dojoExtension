@@ -19,9 +19,12 @@ Please try the "/dataview/tests/test_DataView.html" to play this widget.
 For more information, please see: https://github.com/xgzx123/dojoExtension/wiki/tutorial
 
 
-<h2>Code Location:</h2>
+<h3>Code Location:</h3>
 <img src="dataview.png"/>
 
-<h2>Play with DataView Widget:</h2>
+<br>
+<br>
+<h3>Play with DataView Widget 1:</h3>
 <img src="dataview1.gif"/>
+<h3>Play with DataView Widget 2:</h3>
 <img src="dataview2.gif"/>
