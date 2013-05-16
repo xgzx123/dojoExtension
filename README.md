@@ -28,3 +28,7 @@ For more information, please see: https://github.com/xgzx123/dojoExtension/wiki/
 <img src="dataview1.gif"/>
 <h3>Play with DataView Widget 2:</h3>
 <img src="dataview2.gif"/>
+
+<br>
+<h3>PS: Sample Data</h3>
+<img src="sample_data.png"/>
