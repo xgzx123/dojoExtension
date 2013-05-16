@@ -25,7 +25,7 @@ For more information, please see: https://github.com/xgzx123/dojoExtension/wiki/
 <br>
 <br>
 <h3>Play with DataView Widget 1:</h3>
-<img src="dataview1.gif"/>
+<img src="dataview10.gif"/>
 <h3>Play with DataView Widget 2:</h3>
 <img src="dataview2.gif"/>
 
