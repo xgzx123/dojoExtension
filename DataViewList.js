@@ -407,6 +407,8 @@ define([
 		animating: false,
 		itemMode: "main", //"main", "detail"
 		
+		itemData: {},
+		
 		postMixInProperties: function(){
 			this.inherited(arguments);
 		},
@@ -420,13 +422,19 @@ define([
 			return this.selected;
 		},
 		
+		getItemData: function(){
+			return this.itemData;
+		},
+		
 		_onFocus: function(){
 			//TODO
+			this.inherited(arguments);
 		},
 		
 		_onBlur: function(){
 			// this.selected = false;
 			// this.updateParent(false);
+			this.inherited(arguments);
 		},
 		
 		_onClick: function(e){
@@ -723,16 +731,17 @@ define([
 				domClass.remove(this.containerNode, "emptyContent");
 				array.forEach(this.items, function(item, index){
 					var attrs = this.store.getAttributes(item);
-					var initItem = {};
+					var initItem = {}, initItemData={};
 					initItem["templateString"] = this.itemTemplate;
 					array.forEach(attrs, function(attr){
+						initItemData[attr] = this.store.getValue(item, attr);
 						if(attr == "id"){return;}
 						initItem[attr] = this.store.getValue(item, attr);
 					}, this);
 					var fvListItem = null;
 						
 					try{
-						fvListItem = new _DataViewListItem(initItem);
+						fvListItem = new _DataViewListItem(lang.mixin({}, initItem, {itemData: initItemData}));
 					}catch(e){
 						console.log(e.message);
 					}
@@ -776,19 +785,24 @@ define([
 		
 		updateWidget: function(dvListItem, showDetailPopup){
 			this.selectItem = dvListItem.selected ? dvListItem : null;
+			
+			this.updateWidgetTitle();
+			
+			this.showPopupDetails && this.updateDetailPopup(dvListItem, showDetailPopup);
+		},
+		
+		updateWidgetTitle: function(){
 			this.titleDesc = "";
 			if(this.selectedItems.length){
 				this.titleDesc += "Selected Items: ";
 				array.forEach(this.selectedItems, lang.hitch(this, function(item){
-					this.titleDesc += item["name"] + " . ";
+					this.titleDesc += item.getItemData()["name"] + " . ";
 				}));
 				
 			}else{
 				this.titleDesc = "(No item selected)";
 			}
 			domAttr.set(this.titleDescNode, "innerHTML", this.titleDesc);
-			
-			this.showPopupDetails && this.updateDetailPopup(dvListItem, showDetailPopup);
 		},
 		
 		updateDetailPopup: function(dvListItem, showDetailPopup){
